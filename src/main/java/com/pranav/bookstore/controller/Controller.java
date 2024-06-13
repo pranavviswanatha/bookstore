@@ -4,6 +4,8 @@ import com.pranav.bookstore.Library;
 import com.pranav.bookstore.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,5 +17,15 @@ public class Controller {
     @GetMapping(value = "/allBooks")
     public List<Book> getAllBooks () {
         return library.findAll();
+    }
+
+    @PostMapping(value = "/addBook")
+    public Book addBook (@RequestBody Book book) {
+        return library.save(book);
+    }
+
+    @PostMapping(value = "/addCollection")
+    public List<Book> addCollection (@RequestBody List<Book> collection) {
+        return library.saveAll(collection);
     }
 }
