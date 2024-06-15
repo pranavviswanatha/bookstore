@@ -1,12 +1,10 @@
 package com.pranav.bookstore.controller;
 
-import com.pranav.bookstore.Library;
+import com.pranav.bookstore.index.SearchRepo;
+import com.pranav.bookstore.repository.Library;
 import com.pranav.bookstore.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +15,12 @@ public class Controller {
     @GetMapping(value = "/allBooks")
     public List<Book> getAllBooks () {
         return library.findAll();
+    }
+
+    @GetMapping(value = "/booksMatching")
+    public List<Book> search(@RequestParam String searchText){
+        SearchRepo searchRepo = new SearchRepo();
+        return searchRepo.searchBooks(searchText);
     }
 
     @PostMapping(value = "/addBook")
