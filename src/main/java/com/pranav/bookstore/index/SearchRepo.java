@@ -13,7 +13,12 @@ import java.util.List;
 public class SearchRepo {
 
     @Autowired
-    private MongoTemplate mongoTemplate;
+    private final MongoTemplate mongoTemplate;
+
+    @Autowired
+    public SearchRepo(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     public List<Book> searchBooks(String searchText) {
         TextCriteria textCriteria = TextCriteria.forDefaultLanguage().matchingPhrase(searchText);

@@ -4,6 +4,7 @@ import com.pranav.bookstore.index.SearchRepo;
 import com.pranav.bookstore.repository.Library;
 import com.pranav.bookstore.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,14 @@ import java.util.List;
 public class Controller {
     @Autowired
     Library library;
+
+    private final SearchRepo searchRepo;
+
+    @Autowired
+    public Controller(SearchRepo searchRepo) {
+        this.searchRepo = searchRepo;
+    }
+
     @GetMapping(value = "/allBooks")
     public List<Book> getAllBooks () {
         return library.findAll();
@@ -19,7 +28,6 @@ public class Controller {
 
     @GetMapping(value = "/booksMatching")
     public List<Book> search(@RequestParam String searchText){
-        SearchRepo searchRepo = new SearchRepo();
         return searchRepo.searchBooks(searchText);
     }
 
