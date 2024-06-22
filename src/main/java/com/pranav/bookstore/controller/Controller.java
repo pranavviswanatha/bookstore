@@ -27,8 +27,9 @@ public class Controller {
     }
 
     @GetMapping(value = "/booksMatching")
-    public List<Book> search(@RequestParam String searchText){
-        return searchRepo.searchBooks(searchText);
+    public List<Book> search(@RequestParam(required = false) String searchText,
+                             @RequestParam(required = false) List<String> genres){
+        return searchRepo.searchBooks(searchText, genres);
     }
 
     @PostMapping(value = "/addBook")
