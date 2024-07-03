@@ -1,4 +1,4 @@
-package com.pranav.bookstore.index;
+package com.pranav.bookstore.service;
 
 import com.pranav.bookstore.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;

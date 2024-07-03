@@ -1,10 +1,9 @@
 package com.pranav.bookstore.controller;
 
-import com.pranav.bookstore.index.SearchRepo;
+import com.pranav.bookstore.service.SearchRepo;
 import com.pranav.bookstore.repository.Library;
 import com.pranav.bookstore.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
