@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping (value = "/home")
 public class Controller {
     @Autowired
     Library library;
