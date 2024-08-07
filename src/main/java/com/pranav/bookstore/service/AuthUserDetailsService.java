@@ -1,4 +1,4 @@
-package com.pranav.bookstore.index;
+package com.pranav.bookstore.service;
 
 import com.pranav.bookstore.models.AuthUser;
 import com.pranav.bookstore.repository.AuthUserRepository;

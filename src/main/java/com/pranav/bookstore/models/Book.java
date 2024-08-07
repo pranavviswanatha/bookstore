@@ -1,5 +1,6 @@
 package com.pranav.bookstore.models;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Arrays;
@@ -7,6 +8,8 @@ import java.util.Date;
 
 @Document(collection = "database")
 public class Book {
+    @Id
+    private String id;
     private String name;
     private String author;
     private Date pubDate;
