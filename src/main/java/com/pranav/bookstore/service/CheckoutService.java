@@ -26,8 +26,10 @@ public class CheckoutService {
             cart.setUsername(username);
         }
         TreeMap<String, Integer> map = cart.getCart();
-        if (map == null)
+        if (map == null) {
             map = new TreeMap<>();
+            cart.setCart(map);
+        }
         if (map.containsKey(itemId)) {
             int val = map.get(itemId)+quantity;
             map.replace(itemId, val);
