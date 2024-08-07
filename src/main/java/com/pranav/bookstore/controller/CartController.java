@@ -4,7 +4,6 @@ import com.pranav.bookstore.models.Cart;
 import com.pranav.bookstore.service.CheckoutService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,9 +17,13 @@ public class CartController {
     @PatchMapping("/addToCart")
     public Cart addToCart(@RequestParam String username,
                           @RequestParam String itemId,
-                          @RequestParam double priceOfOne,
                           @RequestParam(required = false, defaultValue = "1") int quantity) {
-        return checkoutService.addToCart(username,itemId,priceOfOne,quantity);
+        return checkoutService.addToCart(username,itemId,quantity);
+    }
+
+    @PatchMapping("/getCartValue")
+    public double getCartValue(@RequestBody Cart cart) {
+        return checkoutService.getCartTotal(cart);
     }
 
 }

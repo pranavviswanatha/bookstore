@@ -1,5 +1,6 @@
 package com.pranav.bookstore.service;
 
+import com.pranav.bookstore.models.Book;
 import com.pranav.bookstore.models.Cart;
 import com.pranav.bookstore.repository.CartRepository;
 import com.pranav.bookstore.repository.Library;
@@ -17,7 +18,7 @@ public class CheckoutService {
     @Autowired
     Library library;
 
-    public Cart addToCart(String username, String itemId, double priceOfOne, int quantity) {
+    public Cart addToCart(String username, String itemId, int quantity) {
         Optional<Cart> cartOpt = cartRepo.findByUsername(username);
         Cart cart = (cartOpt.isPresent())?cartOpt.get():new Cart();
         if(cartOpt.isPresent()) {
@@ -36,5 +37,15 @@ public class CheckoutService {
         } else
             map.put(itemId, quantity);
         return cartRepo.save(cart);
+    }
+
+    public double getCartTotal (Cart cart) {
+        double total = 0.0;
+        for (String s:cart.getCart().keySet()){
+            Optional<Book> item= library.findById(s);
+            double price = (item.isPresent()) ? item.get().getPrice() : 0.0;
+            total += price * cart.getCart().get(s);
+        }
+        return total;
     }
 }
